@@ -27,17 +27,6 @@ def quiet_logs(sc, log_level="ERROR"):
     logger.LogManager.getLogger("org"). setLevel(level)
     logger.LogManager.getLogger("akka").setLevel(level)
 
-# def set_s3_properties(sc):
-#     """
-#     """
-#     sc._jsc.hadoopConfiguration().set("fs.s3.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
-#     sc._jsc.hadoopConfiguration().set("fs.s3a.endpoint", "s3ceph.ijclab.in2p3.fr:7480")
-#     sc._jsc.hadoopConfiguration().set("fs.s3a.access.key","OAOY7LSI977XY6JH1D83")
-#     sc._jsc.hadoopConfiguration().set("fs.s3a.secret.key","SLyzDIaJIhBEOc0HVxailhK205SRCRM4vVObK9W2")
-#     sc._jsc.hadoopConfiguration().set("fs.s3a.connection.ssl.enabled", "false")
-#     sc._jsc.hadoopConfiguration().set("fs.s3a.fast.upload", "true")
-#     sc._jsc.hadoopConfiguration().set("mapreduce.fileoutputcommitter.algorithm.version", "2")
-
 def main():
     # Grab the running Spark Session,
     # otherwise create it.
@@ -48,7 +37,6 @@ def main():
 
     sc = spark.sparkContext
     quiet_logs(sc)
-    set_s3_properties(sc)
 
     filename = sys.argv[1]
     filename_template = filename.split('.parquet')[0] + '{}.parquet'
